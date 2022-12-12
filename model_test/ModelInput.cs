@@ -1,55 +1,25 @@
 ﻿using Microsoft.ML.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace model_test
 {
     public class ModelInput
     {
+        [ColumnName(@"AvgAreaIncome")]
+        public float AvgAreaIncome { get; set; }
 
-        [ColumnName(@"Index")]
-        public float Index { get; set; }
+        [ColumnName(@"AvgAreaHouseAge")]
+        public float AvgAreaHouseAge { get; set; }
 
-        [ColumnName(@"Id_Act")]
-        public float Id_Act { get; set; }
+        [ColumnName(@"AvgAreaNumberRooms")]
+        public float AvgAreaNumberRooms { get; set; }
 
-        [ColumnName(@"Iq_Act")]
-        public float Iq_Act { get; set; }
+        [ColumnName(@"AvgAreaNumberBedrooms")]
+        public float AvgAreaNumberBedrooms { get; set; }
 
-        [ColumnName(@"PhaseAngle_SP")]
-        public float PhaseAngle_SP { get; set; }
+        [ColumnName(@"AreaPopulation")]
+        public float AreaPopulation { get; set; }
 
-        [ColumnName(@"Torque_SP")]
-        public float Torque_SP { get; set; }
-
-        [ColumnName(@"Vd_Act")]
-        public float Vd_Act { get; set; }
-
-        [ColumnName(@"Vq_Act")]
-        public float Vq_Act { get; set; }
-
-        [ColumnName(@"Barcode_Pos")]
-        public float Barcode_Pos { get; set; }
-
-        [ColumnName(@"Barcode_Vel")]
-        public float Barcode_Vel { get; set; }
-
-        [ColumnName(@"Carriage_Center_Pos")]
-        public float Carriage_Center_Pos { get; set; }
-
-        [ColumnName(@"Carriage_Vel")]
-        public float Carriage_Vel { get; set; }
-
-        [ColumnName(@"Inductance")]
-        public float Inductance { get; set; }
-
-        [ColumnName(@"Resistance")]
-        public float Resistance { get; set; }
-
-        [ColumnName(@"Timestamp")]
-        public float Timestamp { get; set; }
+        [ColumnName(@"Price")]
+        public float Price { get; set; }
     }
 }

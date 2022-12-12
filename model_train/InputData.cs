@@ -1,34 +1,27 @@
 ﻿using Microsoft.ML.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace model_train
 {
     public class InputData
     {
         [LoadColumn(0)]
-        public string VendorId;
+        public float AvgAreaIncome { get; set; }
 
         [LoadColumn(1)]
-        public string RateCode;
+        public float AvgAreaHouseAge { get; set; }
 
         [LoadColumn(2)]
-        public float PassengerCount;
+        public float AvgAreaNumberRooms { get; set; }
 
         [LoadColumn(3)]
-        public float TripTime;
+        public float AvgAreaNumberBedrooms { get; set; }
 
         [LoadColumn(4)]
-        public float TripDistance;
+        public float AreaPopulation { get; set; }
 
         [LoadColumn(5)]
-        public string PaymentType;
-
-        [LoadColumn(6)]
-        public float FareAmount;
+        public float Price { get; set; }
 
     }
 }

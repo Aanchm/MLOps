@@ -1,34 +1,28 @@
 ﻿using Microsoft.ML;
-using Microsoft.ML.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace model_test
 {
     public partial class MLModelPredictor
     {
-        private static string _modelId;
-        internal MLModelPredictor(string modelId)
+        private static string MLNetModelPath;
+        internal MLModelPredictor()
         {
-            _modelId = modelId;
+            MLNetModelPath = GetModelPath();
         }
 
-        private static string GetModelPath(string modelId)
+        private static string GetModelPath()
         {
             FileInfo _dataRoot = new FileInfo(typeof(Program).Assembly.Location);
             string assemblyFolderPath = _dataRoot.Directory.FullName;
 
             string parentPath = assemblyFolderPath.Remove(assemblyFolderPath.IndexOf("model_test"));
-            string modelTrainPath = $"/model_train/MLModels/mw_model_{modelId}";
+            string modelTrainPath = @$"model_train\MLModels\mw_model.zip";
 
-            string modelPath = Path.Combine(parentPath, modelTrainPath);
+            string modelPath = parentPath + modelTrainPath;
+            Console.WriteLine($"Model Path: {modelPath}");
+
             return modelPath;
         }
-
-        private static string MLNetModelPath = GetModelPath(_modelId);
 
         internal static readonly Lazy<PredictionEngine<ModelInput, ModelOutput>> PredictEngine = new Lazy<PredictionEngine<ModelInput, ModelOutput>>(() => CreatePredictEngine(), true);
 

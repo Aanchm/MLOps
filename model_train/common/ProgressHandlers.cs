@@ -76,7 +76,7 @@ namespace Common
             }
             else
             {
-                ConsoleHelper.PrintIterationMetrics(_iterationIndex, iterationResult.TrainerName,
+                ConsoleHelper.PrintIterationMetrics(_iterationIndex, iterationResult.TrainerName.Replace("ReplaceMissingValues=>Concatenate=>", ""),
                     iterationResult.ValidationMetrics, iterationResult.RuntimeInSeconds);
             }
         }

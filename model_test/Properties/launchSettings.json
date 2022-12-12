@@ -2,7 +2,7 @@
   "profiles": {
     "model_test": {
       "commandName": "Project",
-      "commandLineArgs": "model_id "
+      "commandLineArgs": "33 C:\\source\\repo\\ml-pos-vel-est\\Data\\CleanData\\data-2022-12-07_14-57-11-STR1-001-301-01-301-02-301-03-301-04-301-05-301-06-301-07-301-08-301-09-301-10-301-11-302-01-302-02-302-03-302-04-302-05-302-06-302-07-302-08-302-09-302-10-302-11.csv"
     }
   }
 }

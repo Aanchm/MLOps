@@ -15,13 +15,14 @@ if (!File.Exists(trainingPath))
 if (!UInt32.TryParse(args[1], out uint ExperimentTime))
     ExperimentTime = 7200;
 
+
 string BaseModelsRelativePath = @"../../../../MLModels";
 string ModelRelativePath = $"{BaseModelsRelativePath}/mw_model.zip";
 string OnnxModelRelativePath = $"{BaseModelsRelativePath}/mw_onnx_model.onnx";
 string ModelPath = GetAbsolutePath(ModelRelativePath);
 string OnnxModelPath = GetAbsolutePath(OnnxModelRelativePath);
 
-string LabelColumnName = "FareAmount";
+string LabelColumnName = "Price";
 
 MLContext mlContext = new MLContext();
 BuildTrainEvaluateAndSaveModel(mlContext);
@@ -30,21 +31,20 @@ BuildTrainEvaluateAndSaveModel(mlContext);
 ITransformer BuildTrainEvaluateAndSaveModel(MLContext mlContext)
 {
     IDataView trainingDataView = mlContext.Data.LoadFromTextFile<InputData>(trainingPath, hasHeader: true, separatorChar: ',');
-
     var progressHandler = new RegressionExperimentProgressHandler();
+
     ConsoleHelper.ConsoleWriteHeader("=============== Training the model ===============");
     Console.WriteLine($"Running AutoML regression experiment for {ExperimentTime} seconds...");
     ExperimentResult<RegressionMetrics> experimentResult = mlContext.Auto()
         .CreateRegressionExperiment(ExperimentTime)
         .Execute(trainingDataView, LabelColumnName, progressHandler: progressHandler);
 
-    // Evaluate the model and print metrics
     ConsoleHelper.ConsoleWriteHeader("===== Evaluating model's accuracy with test data =====");
     RunDetail<RegressionMetrics> best = experimentResult.BestRun;
     ITransformer trainedModel = best.Model;
-    Console.WriteLine($"Best Model {best.TrainerName}");
+    Console.WriteLine($"Best Model:  {best.TrainerName.Replace("ReplaceMissingValues=>Concatenate=>", "")}");
 
-    //Save/persist the trained model to a .ZIP file
+    // Save trained model to .zip file
     mlContext.Model.Save(trainedModel, trainingDataView.Schema, ModelPath);
 
     using (var stream = File.Create(OnnxModelPath))
