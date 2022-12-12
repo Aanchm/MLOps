@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "model_test": {
+      "commandName": "Project",
+      "commandLineArgs": "model_id "
+    }
+  }
+}

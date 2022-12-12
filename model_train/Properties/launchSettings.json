@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "model_train": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\source\\repo\\ml-pos-vel-est\\Data\\CleanData\\TestRL\\all-open-loop-data-RL-all-drives.csv model_id 7200"
+    }
+  }
+}
